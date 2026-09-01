@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Probability Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app" id="app">
+    <header class="hero">
+      <h1>Probability Simulator</h1>
+      <p class="subtitle">Choose an experiment.</p>
+    </header>
+
+    <section id="menu" class="menu" aria-label="Experiments">
+      <button data-mode="coin1">Tossing One Coin</button>
+      <button data-mode="coin2">Tossing Two Coins</button>
+      <button data-mode="die1">Rolling One Die</button>
+      <button data-mode="dice2">Rolling Two Dice</button>
+      <button data-mode="ball1">Drawing One Ball</button>
+      <button data-mode="ballRep">Drawing Two Balls with Replacement</button>
+      <button data-mode="ballNoRep">Drawing Two Balls without Replacement</button>
+    </section>
+
+    <section id="experiment" class="hidden">
+      <div class="topbar">
+        <div>
+          <h2 id="title"></h2>
+          <p id="instruction" class="muted"></p>
+        </div>
+        <button id="back" class="secondary">Back</button>
+      </div>
+
+      <section class="panel setup">
+        <label for="numTrials"><strong>Number of trials</strong></label>
+        <div class="quick-buttons">
+          <button class="chip" data-n="1">1</button>
+          <button class="chip" data-n="10">10</button>
+          <button class="chip" data-n="20">20</button>
+          <button class="chip" data-n="50">50</button>
+        </div>
+        <div class="run-row">
+          <input id="numTrials" type="number" min="1" max="100" value="20" />
+          <button id="start" class="primary">Start Experiment</button>
+        </div>
+        <p id="note" class="muted small">The simulator stops after each trial. Click Next Trial to continue.</p>
+      </section>
+
+      <section class="panel stage" aria-live="polite">
+        <p id="progress" class="progress">Ready</p>
+        <div id="visual" class="visual"></div>
+        <p id="result" class="result">—</p>
+        <p id="detail" class="muted"></p>
+        <button id="next" class="primary hidden">Next Trial</button>
+      </section>
+
+      <section class="grid-two">
+        <div class="panel table-panel">
+          <div class="section-head">
+            <h3>Trial Results</h3>
+            <span id="trialCount" class="muted small">0 trials</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Trial</th><th>Result</th></tr>
+              </thead>
+              <tbody id="history"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel table-panel">
+          <div class="section-head">
+            <h3>Cumulative Results</h3>
+            <span id="total" class="muted small">Total: 0</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Outcome</th><th class="num">Frequency</th><th class="num">Percentage</th></tr>
+              </thead>
+              <tbody id="stats"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-actions">
+        <button id="reset" class="secondary">Reset All Results</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
